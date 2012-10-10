@@ -21,11 +21,11 @@ flatten = (array) ->
     , []
 
 after = (times, func) ->
+     return func() if times <= 0 
      args = [] 
-     return func(args) if times <= 0 
      return -> 
        args = args.concat(flatten(arguments)) 
-       func.apply(this, [args]) if --times < 1
+       func.apply(this, args) if --times < 1
 
 wrap = (func, wrapper) ->
     return ->
