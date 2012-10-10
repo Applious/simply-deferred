@@ -81,7 +81,8 @@ describe 'deferred', ->
         new deferred.Deferred().fail(callback).reject(42, 24).fail(callback)
 
     it 'should provide a when method', (done) ->
-        callback = _.after 4, done
+        callback = _.after 4, ->
+          done()
         def1 = new deferred.Deferred().done callback
         def2 = new deferred.Deferred().done callback
         def3 = new deferred.Deferred().done callback
