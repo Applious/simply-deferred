@@ -43,14 +43,14 @@ Portions of this code are inspired and borrowed from Underscore.js (http://under
 
   after = function(times, func) {
     var args;
-    args = [];
     if (times <= 0) {
-      return func(args);
+      return func();
     }
+    args = [];
     return function() {
       args = args.concat(flatten(arguments));
       if (--times < 1) {
-        return func.apply(this, [args]);
+        return func.apply(this, args);
       }
     };
   };
